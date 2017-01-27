@@ -1,0 +1,15 @@
+<div clas="row">
+  <h1 class="text-center">Listing all Users</h1>
+</div>
+
+<% @users.each do |user| %>
+   <div class="col-xs-12 col-md-6 ">
+     <div class="user-card">
+      <h4 class="user-name"><%= "#{user.first_name} #{user.mi} #{user.last_name}" %></h4>
+      <p class="user-location"><%= user.email %></p>
+      <p class="user-location"><%= "#{user.country} | #{user.city}" %></p>
+      <p class="user-location"><%= link_to "View Profile", user_path(user) %></p>
+     </div>
+   </div>
+
+<% end %>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar nav navbar-app">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -8,16 +8,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="#">App</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li class="active"><%= link_to "Users Profile", users_path, class: "navbar-links" %> </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle navbar-links" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
@@ -37,10 +36,12 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-            <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "Signed as #{current_user.first_name}  #{current_user.last_name}",
+                                 edit_user_registration_path(current_user), class: "navbar-links" %></li>
+            <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-links"  %></li>
          <% else %>
-          <li><%= link_to "Sign In", new_user_session_path %></li>
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li><%= link_to "Sign In", new_user_session_path, class: "navbar-links"  %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path, class: "navbar-links"  %></li>
          <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->

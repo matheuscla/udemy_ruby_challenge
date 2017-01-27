@@ -1,0 +1,19 @@
+.navbar-app {
+  padding:1em 0;
+  background-color: #e74c3c;
+  border-radius: 0 !important;
+
+  .navbar-brand {
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .navbar-links {
+    background: none;
+    color: #fff;
+
+      &:hover {
+        background: none;
+      }
+  }
+}

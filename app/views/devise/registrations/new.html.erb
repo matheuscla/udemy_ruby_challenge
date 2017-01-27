@@ -37,6 +37,31 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+    <div class="field">
+      <%= f.label :address1 %><br />
+      <%= f.text_field :address1, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :address2 %><br />
+      <%= f.text_field :address2, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :zip %><br />
+      <%= f.text_field :zip, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :city %><br />
+      <%= f.text_field :city, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :country %><br />
+      <%= f.text_field :country, autofocus: true %>
+    </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
