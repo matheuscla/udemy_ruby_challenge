@@ -9,6 +9,10 @@
       <p class="user-location"><%= user.email %></p>
       <p class="user-location"><%= "#{user.country} | #{user.city}" %></p>
       <p class="user-location"><%= link_to "View Profile", user_path(user) %></p>
+       <% if current_user.admin == true  %>
+        <%= link_to "Edit User", edit_user_path(user) %>
+        <%= link_to "Delete User", user_path(user), method: :delete, data: { confirm: "Are you sure? "} %>
+       <% end %>
      </div>
    </div>
 
