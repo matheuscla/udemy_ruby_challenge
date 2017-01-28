@@ -1,3 +1,4 @@
+<%= @family.users.count %>
 <% @family.users.each do |u|%>
   <%= link_to "#{u.first_name}", user_path(u) %>
 <% end %>
