@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="col-xs-12">
   <h1>My Family</h1>
   <p><%= "Your family has #{@family.users.count} members" %></p>
@@ -19,9 +18,3 @@
       </div>
     </div>
 <% end %>
-=======
-<%= @family.users.count %>
-<% @family.users.each do |u|%>
-  <%= link_to "#{u.first_name}", user_path(u) %>
-<% end %>
->>>>>>> b9c12df... Change Family controller to send to the right routes
