@@ -21,16 +21,6 @@
     <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
     <div class="field">
       <%= f.label :address1 %><br />
       <%= f.text_field :address1, autofocus: true %>
@@ -55,6 +45,17 @@
       <%= f.label :country %><br />
       <%= f.text_field :country, autofocus: true %>
     </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off" %>
+    </div>
+
 
   <div class="actions">
     <%= f.submit "Update" %>
