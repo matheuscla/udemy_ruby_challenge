@@ -3,6 +3,7 @@ class FamiliesController < ApplicationController
 
   def index
     if current_user.family_id == 0
+      redirect_to users_path
 
     else
       @family = Family.find(current_user.family_id)
@@ -17,3 +18,4 @@ class FamiliesController < ApplicationController
     redirect_to users_path
   end
 end
+  
