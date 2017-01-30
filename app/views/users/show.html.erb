@@ -1,6 +1,38 @@
-<h1><%= "#{@user.first_name} #{@user.mi} #{@user.last_name}" %></h1>
-<p><%= "#{@user.country} | #{@user.city}" %></p>
-<p><%= @user.email %></p>
-<p><%= @user.address1 %></p>
-<p><%= @user.address2 %></p>
-<p><%= @user.zip %></p>
+<div class="col-xs-12 col-md-6">
+  <fieldset>
+    <legend>User Info</legend>
+    <p ><%= "Name: #{@user.first_name} #{@user.mi} #{@user.last_name}" %></p>
+    <p><%= "Email: @user.email" %></p>
+
+    <div class="btn-group" role="group" >
+    <% if @user.family_id != 0 %>
+      <button class="btn btn-default">Already in a family</button>
+    <%elsif current_user.id == @user.id%>
+      <p>You dont have family</p>
+    <%else%>
+      <%= simple_form_for '', :html => { class: "btn-group"} ,url: add_to_family_families_path, method: :post do |form| %>
+        <%= form.input :id, :as => :hidden, :input_html => { :value => @user.id }%>
+        <%= form.submit "Add to family",  class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+
+    <% if @user.family_id == current_user.family_id && current_user.id != @user.id %>
+      <%= simple_form_for '',  :html => { class: "btn-group" }, url: delete_to_family_families_path, method: :post do |form| %>
+        <%= form.input :id, :as => :hidden, :input_html => { :value => @user.id }%>
+        <%= form.submit "Remove to your family",  class: "btn btn-danger" %>
+      <% end %>
+    <% end%>
+    </div>
+
+  </fieldset>
+</div>
+
+<div class="col-xs-12 col-md-6">
+  <fieldset>
+    <legend>Address Info</legend>
+    <p><%= "Country: #{@user.country} | City: #{@user.city}" %></p>
+    <p><%= "Addres: #{@user.address1}" %></p>
+    <p><%= "Addres: #{@user.address2}" %></p>
+    <p><%= "Zip Code: #{@user.zip}" %></p>
+  </fieldset>
+</div>
