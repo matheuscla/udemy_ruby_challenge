@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :families do
     post :add_to_family, on: :collection
+    post :delete_to_family, on: :collection
   end
 
 

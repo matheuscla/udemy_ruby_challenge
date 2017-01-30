@@ -17,5 +17,11 @@ class FamiliesController < ApplicationController
     @user.save
     redirect_to users_path
   end
+
+  def delete_to_family
+    @user = User.find(params[:id])
+    @user.family_id = 0
+    @user.save
+    redirect_to user_path(@user)
+  end
 end
-  
