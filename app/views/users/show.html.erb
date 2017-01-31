@@ -4,20 +4,20 @@
     <p ><%= "Name: #{@user.first_name} #{@user.mi} #{@user.last_name}" %></p>
     <p><%= "Email: @user.email" %></p>
 
-    <div class="btn-group" role="group" >
+    <div class="btn-flex" role="group" >
     <% if @user.family_id != 0 %>
       <button class="btn btn-default">Already in a family</button>
     <%elsif current_user.id == @user.id%>
       <p>You dont have family</p>
     <%else%>
-      <%= simple_form_for '', :html => { class: "btn-group"} ,url: add_to_family_families_path, method: :post do |form| %>
+      <%= simple_form_for '' ,url: add_to_family_families_path, method: :post do |form| %>
         <%= form.input :id, :as => :hidden, :input_html => { :value => @user.id }%>
-        <%= form.submit "Add to family",  class: "btn btn-primary" %>
+        <%= form.submit "Add to family",  class: "btn btn-primary space-right" %>
       <% end %>
     <% end %>
 
     <% if @user.family_id == current_user.family_id && current_user.id != @user.id %>
-      <%= simple_form_for '',  :html => { class: "btn-group" }, url: delete_to_family_families_path, method: :post do |form| %>
+      <%= simple_form_for '', url: delete_to_family_families_path, method: :post do |form| %>
         <%= form.input :id, :as => :hidden, :input_html => { :value => @user.id }%>
         <%= form.submit "Remove to your family",  class: "btn btn-danger" %>
       <% end %>

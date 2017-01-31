@@ -1,7 +1,50 @@
 
+<div class="col-xs-12">
+  <h1 class="text-center"><strong>My friends</strong></h1>
+  <h4><strong><%= "You have #{@friendship.count} friends" %></strong></h4>
+</div>
 <% if @friendship.size > 0  %>
   <% @friendship.each do |friend| %>
-    <%= friend.first_name %>
+  <div class="col-xs-12 col-md-4">
+    <div class="user-card text-center">
+      <h4 class="user-name"><%= "#{friend.first_name} #{friend.mi} #{friend.last_name}" %></h4>
+      <p class="user-location"><%= friend.email %></p>
+      <p class="user-location"><%= "#{friend.country} | #{friend.city}" %></p>
+      <div class="btn-actions">
+        <button type="button" class="btn btn-primary btn-view-profile user-space-button">
+         <%= link_to "View", user_path(friend) %>
+        </button>
+      <% if friend.family_id != 0 %>
+      <p class="user-location">Already in a family</p>
+      <%elsif current_user.id == friend.id%>
+      <button type="button" class=" btn btn-default user-space-button">You dont have family</button>
+
+
+      <%else%>
+        <%= simple_form_for '', url: add_to_family_families_path, method: :post do |form| %>
+          <%= form.input :id, :as => :hidden, :input_html => { :value => friend.id }%>
+          <%= form.submit "Add to family",  class: "btn btn-primary user-space-button" %>
+        <% end %>
+    <% end %>
+
+    <% if current_user.friends.map(&:id).include?(friend.id)  %>
+      <%= link_to "Remove Friend", friendship_path(friend), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+     <% elsif current_user.id != friend.id  %>
+     <%= simple_form_for '', url: add_friend_users_path, method: :post do |form| %>
+       <%= form.input :id, :as => :hidden, :input_html => { :value => friend.id }%>
+
+       <%= form.submit "Add Friend",  class: "btn btn-primary"%>
+     <% end %>
+    <% end %>
+
+
+    <% if current_user.admin == true  %>
+    <%= link_to "Edit User", edit_user_path(friend) %>
+    <%= link_to "Delete User", user_path(friend), method: :delete, data: { confirm: "Are you sure? "} %>
+   <% end %>
+          </div>
+    </div>
+  </div>
   <% end %>
 <% else  %>
   <div class="row col-lg-12">

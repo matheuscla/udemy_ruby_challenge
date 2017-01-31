@@ -1,5 +1,5 @@
 <div clas="row">
-  <h1 class="text-center">Listing all Users</h1>
+  <h1 class="text-center"><strong>Listing all Users</strong></h1>
 </div>
 
 <div class="col-xs-12">
@@ -9,31 +9,35 @@
 </div>
 
 <% @users.each do |user| %>
-   <div class="col-xs-12 col-md-6">
-     <div class="user-card">
+   <div class="col-xs-12 col-md-4">
+     <div class="user-card text-center">
        <h4 class="user-name"><%= "#{user.first_name} #{user.mi} #{user.last_name}" %></h4>
        <p class="user-location"><%= user.email %></p>
        <p class="user-location"><%= "#{user.country} | #{user.city}" %></p>
-       <p class="user-location"><%= link_to "View Profile", user_path(user) %></p>
+       <div class="btn-actions">
+         <button type="button" class="btn btn-primary btn-view-profile user-space-button">
+          <%= link_to "View", user_path(user) %>
+         </button>
        <% if user.family_id != 0 %>
        <p class="user-location">Already in a family</p>
        <%elsif current_user.id == user.id%>
-       <p class="user-location">You dont have family</p>
+       <button type="button" class=" btn btn-default user-space-button">You dont have family</button>
+
+
        <%else%>
          <%= simple_form_for '', url: add_to_family_families_path, method: :post do |form| %>
            <%= form.input :id, :as => :hidden, :input_html => { :value => user.id }%>
-           <%= form.submit "Add to family",  class: "btn btn-primary" %>
+           <%= form.submit "Add to family",  class: "btn btn-primary user-space-button" %>
          <% end %>
      <% end %>
 
      <% if current_user.friends.map(&:id).include?(user.id)  %>
-     <div class="text-right">
-       <%= link_to "Remove Friend", friendship_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger delete-friend" %>
-     </div>
+       <%= link_to "Remove Friend", friendship_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
       <% elsif current_user.id != user.id  %>
       <%= simple_form_for '', url: add_friend_users_path, method: :post do |form| %>
         <%= form.input :id, :as => :hidden, :input_html => { :value => user.id }%>
-        <%= form.submit "Add Friend",  class: "btn btn-primary" %>
+
+        <%= form.submit "Add Friend",  class: "btn btn-primary"%>
       <% end %>
      <% end %>
 
@@ -42,6 +46,7 @@
      <%= link_to "Edit User", edit_user_path(user) %>
      <%= link_to "Delete User", user_path(user), method: :delete, data: { confirm: "Are you sure? "} %>
     <% end %>
+           </div>
      </div>
    </div>
 <% end %>

@@ -2,6 +2,7 @@
   background: #ecf0f1;
   border-radius: 5px;
   margin: 1.5em 0;
+  padding-bottom: 1em;
 }
 
 .user-name {
@@ -19,4 +20,45 @@
 
 .delete-friend {
   margin: 1em 1em;
+}
+
+.btn-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-view-profile > a {
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.btn-primary {
+  background-color: #43353D !important;
+  border: #43353D !important;
+}
+
+.btn-danger {
+  background-color: #E01931 !important;
+}
+
+.user-space-button {
+  margin-right: 1em;
+}
+
+.btn-flex {
+  display: flex;
+}
+
+.space-right {
+  margin-right: 0.5em;
+}
+
+.input {
+  border: none !important;
+  border-bottom: solid 2px #663399 !important;
+  border-radius: 0 !important;
 }
