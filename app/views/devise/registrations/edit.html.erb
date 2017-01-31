@@ -27,16 +27,21 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12 col-md-6">
     <div class="form-group">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, class: "form-control input" %>
     </div>
-
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="form-group">
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone, autofocus: true, class: "form-control input" %>
+    </div>
+  </div>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-  </div>
 </div>
 
 <div class="row">
