@@ -15,13 +15,14 @@
         <%= form.submit "Add to family",  class: "btn btn-primary space-right" %>
       <% end %>
     <% end %>
-
+  <% if @user.family_id != 0 %>
     <% if @user.family_id == current_user.family_id && current_user.id != @user.id %>
       <%= simple_form_for '', url: delete_to_family_families_path, method: :post do |form| %>
         <%= form.input :id, :as => :hidden, :input_html => { :value => @user.id }%>
-        <%= form.submit "Remove to your family",  class: "btn btn-danger" %>
-      <% end %>
-    <% end%>
+        <%= form.submit "Remove from your family",  class: "btn btn-danger" %>
+      <%end%>
+    <%end%>
+  <%end%>
     </div>
 
   </fieldset>
