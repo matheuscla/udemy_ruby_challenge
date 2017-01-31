@@ -11,4 +11,16 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+  def  my_friends
+    @friendship = current_user.friends
+  end
+
+  def add_friend
+    @user = User.find(params[:id])
+    current_user.friends << @user
+    redirect_to users_path
+  end
+
+
 end

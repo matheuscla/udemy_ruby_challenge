@@ -1,0 +1,10 @@
+
+<% if @friendship.size > 0  %>
+  <% @friendship.each do |friend| %>
+    <%= friend.first_name %>
+  <% end %>
+<% else  %>
+  <div class="row col-lg-12">
+    <p>You dont have any friends</p>
+  </div>
+<% end %>
