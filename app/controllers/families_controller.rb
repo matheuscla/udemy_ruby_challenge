@@ -10,6 +10,14 @@ class FamiliesController < ApplicationController
     end
   end
 
+  def create
+  @family = Family.create
+  current_user.family_id = @family.id
+  if current_user.save
+          redirect_to users_path
+      end
+  end
+
   def add_to_family
     @family = current_user.family_id
     @user = User.find(params[:id])
