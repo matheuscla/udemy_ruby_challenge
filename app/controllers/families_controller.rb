@@ -23,6 +23,16 @@ class FamiliesController < ApplicationController
           end
       end
     end
+
+    def destroy
+      @family = Family.find(params[:id])
+      @family.destroy
+      current_user.family_id = 0
+      current_user.save
+      flash[:danger] = "Family was successfully deleted"
+      redirect_to users_path
+    end
+
   def add_to_family
     @family = current_user.family_id
     @user = User.find(params[:id])
