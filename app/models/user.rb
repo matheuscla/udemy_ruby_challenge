@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
+  belongs_to :family
 
   validates :family_id, presence: false
 

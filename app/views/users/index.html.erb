@@ -15,9 +15,7 @@
        <p class="user-location"><%= user.email %></p>
        <p class="user-location"><%= "#{user.country} | #{user.city}" %></p>
        <div class="btn-actions">
-         <button type="button" class="btn btn-primary btn-view-profile user-space-button">
-          <%= link_to "View", user_path(user) %>
-         </button>
+           <%= link_to "View", user_path(user),class:"btn btn-primary btn-view-profile user-space-button" %>
        <% if user.family_id != 0 %>
        <p class="user-location">Already in a family</p>
        <%elsif current_user.id == user.id%>
