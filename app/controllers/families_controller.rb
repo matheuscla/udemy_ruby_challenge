@@ -11,13 +11,18 @@ class FamiliesController < ApplicationController
   end
 
   def create
-  @family = Family.create
-  current_user.family_id = @family.id
-  if current_user.save
-          redirect_to users_path
+    if current_user.family_id !=0
+      flash[:danger] = "You Already has a Family"
+      redirect_to users_path
+    else
+      @family = Family.create
+      current_user.family_id = @family.id
+      if current_user.save
+        flash[:success] = "Family was successfully created!"
+              redirect_to root_path
+          end
       end
-  end
-
+    end
   def add_to_family
     @family = current_user.family_id
     @user = User.find(params[:id])
