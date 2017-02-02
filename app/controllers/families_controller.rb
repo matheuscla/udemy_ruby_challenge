@@ -26,9 +26,11 @@ class FamiliesController < ApplicationController
 
     def destroy
       @family = Family.find(params[:id])
-      @family.destroy
-      current_user.family_id = 0
-      current_user.save
+      @users = @family.users
+      @users.each do |user|
+        user.family_id = 0
+        user.save
+      end
       flash[:danger] = "Family was successfully deleted"
       redirect_to users_path
     end
