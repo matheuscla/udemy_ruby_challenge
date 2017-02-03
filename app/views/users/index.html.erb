@@ -7,7 +7,9 @@
     <p><%= "You searched for #{params[:search]}"%></p>
   <% end %>
 </div>
-
+<div align="center">
+<%= will_paginate%>
+</div>
 <% @users.each do |user| %>
    <div class="col-xs-12 col-md-4">
      <div class="user-card text-center">
@@ -44,7 +46,7 @@
      <%= link_to "Edit User", edit_user_path(user) %>
      <%= link_to "Delete User", user_path(user), method: :delete, data: { confirm: "Are you sure? "} %>
     <% end %>
-           </div>
-     </div>
-   </div>
+    </div>
+  </div>
+</div>
 <% end %>

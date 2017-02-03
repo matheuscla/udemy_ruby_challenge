@@ -12,7 +12,7 @@ class FamiliesController < ApplicationController
 
   def create
     if current_user.family_id !=0
-      flash[:danger] = "You Already has a Family"
+      flash[:danger] = "You Already have a Family!"
       redirect_to users_path
     else
       @family = Family.create
