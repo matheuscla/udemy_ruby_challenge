@@ -11,6 +11,8 @@ ruby '2.3.1'
 gem 'rails', '~> 5.0.1'
 gem 'devise'
 gem 'simple_form'
+gem 'will_paginate', '~> 3.1'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
 # Use sqlite3 as the database for Active Record
 group :production do
   gem 'pg'

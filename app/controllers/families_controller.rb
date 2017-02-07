@@ -12,7 +12,7 @@ class FamiliesController < ApplicationController
 
   def create
     if current_user.family_id !=0
-      flash[:danger] = "You Already has a Family"
+      flash[:danger] = "You Already have a Family!"
       redirect_to users_path
     else
       @family = Family.create
@@ -26,9 +26,11 @@ class FamiliesController < ApplicationController
 
     def destroy
       @family = Family.find(params[:id])
-      @family.destroy
-      current_user.family_id = 0
-      current_user.save
+      @users = @family.users
+      @users.each do |user|
+        user.family_id = 0
+        user.save
+      end
       flash[:danger] = "Family was successfully deleted"
       redirect_to users_path
     end
@@ -43,8 +45,17 @@ class FamiliesController < ApplicationController
 
   def delete_to_family
     @user = User.find(params[:id])
-    @user.family_id = 0
-    @user.save
-    redirect_to user_path(@user)
+    @family_id = @user.family_id
+    @family = Family.find(@family_id)
+    if @family.users.count == 1
+       @user.family_id = 0
+       @user.save
+       @family.destroy
+       redirect_to root_path
+    else
+      @user.family_id = 0
+      @user.save
+      redirect_to root_path
+    end
   end
 end
