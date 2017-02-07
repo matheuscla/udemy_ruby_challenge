@@ -45,8 +45,17 @@ class FamiliesController < ApplicationController
 
   def delete_to_family
     @user = User.find(params[:id])
-    @user.family_id = 0
-    @user.save
-    redirect_to user_path(@user)
+    @family_id = @user.family_id
+    @family = Family.find(@family_id)
+    if @family.users.count == 1
+       @user.family_id = 0
+       @user.save
+       @family.destroy
+       redirect_to root_path
+    else
+      @user.family_id = 0
+      @user.save
+      redirect_to root_path
+    end
   end
 end
