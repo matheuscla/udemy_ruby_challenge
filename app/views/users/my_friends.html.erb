@@ -32,7 +32,6 @@
      <% elsif current_user.id != friend.id  %>
      <%= simple_form_for '', url: add_friend_users_path, method: :post do |form| %>
        <%= form.input :id, :as => :hidden, :input_html => { :value => friend.id }%>
-
        <%= form.submit "Add Friend",  class: "btn btn-primary"%>
      <% end %>
     <% end %>
@@ -47,7 +46,4 @@
   </div>
   <% end %>
 <% else  %>
-  <div class="row col-lg-12">
-    <p>You dont have any friends</p>
-  </div>
 <% end %>
