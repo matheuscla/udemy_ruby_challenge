@@ -25,37 +25,18 @@ class FamiliesController < ApplicationController
     end
 
     def destroy
-      @family = Family.find(params[:id])
-      @users = @family.users
-      @users.each do |user|
-        user.family_id = 0
-        user.save
-      end
+      DestroyFamilyService.new(Family.find(params[:id])).call
       flash[:danger] = "Family was successfully deleted"
       redirect_to users_path
     end
 
   def add_to_family
-    @family = current_user.family_id
-    @user = User.find(params[:id])
-    @user.family_id = @family
-    @user.save
+    AddFamilyService.new(current_user.family_id, User.find(params[:id])).call
     redirect_to users_path
   end
 
   def delete_to_family
-    @user = User.find(params[:id])
-    @family_id = @user.family_id
-    @family = Family.find(@family_id)
-    if @family.users.count == 1
-       @user.family_id = 0
-       @user.save
-       @family.destroy
-       redirect_to root_path
-    else
-      @user.family_id = 0
-      @user.save
-      redirect_to root_path
-    end
+    DeleteFamilyService.new(User.find(params[:id])).call
+    redirect_to root_path
   end
 end
