@@ -23,7 +23,7 @@
         <% end %>
         <% end %>
       </ul>
-      <div class="navbar-form navbar-left text-center">
+      <div class="navbar-form navbar-left text-center hidden-sm hidden-xs search-nav-desktop">
         <% if user_signed_in? %>
           <%= form_tag(users_path, :method => "get", id: "search-form") do %>
               <%= text_field_tag :search, params[:search], placeholder: "Search Users", class: "form-control search-input" %>
@@ -44,3 +44,12 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<div class="navbar-left text-center hidden-md hidden-lg nav-width">
+  <% if user_signed_in? %>
+    <%= form_tag(users_path, :method => "get", id: "search-form-mobile") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Users", class: "form-control search-input-mobile" %>
+        <%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
+    <% end %>
+<% end %>
+</div>

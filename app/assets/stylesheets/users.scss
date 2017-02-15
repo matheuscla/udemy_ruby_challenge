@@ -27,6 +27,18 @@
   justify-content: center;
 }
 
+@media (max-width: 384px) {
+  .btn-actions {
+    flex-direction: column;
+  }
+
+  .user-space-button {
+    margin-right:  0 !important;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}
+
 .btn-view-profile > a {
   color: #fff;
 
@@ -61,4 +73,10 @@
   border: none !important;
   border-bottom: solid 2px #663399 !important;
   border-radius: 0 !important;
+}
+
+@media (max-width: 991px) {
+  .user-info-margin {
+    margin-top: 2em;
+  }
 }
