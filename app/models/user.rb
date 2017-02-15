@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
-  
+
 
   validates :family_id, presence: false
 
@@ -23,8 +23,6 @@ class User < ApplicationRecord
   validates :zip, presence: true, length: {maximum: 8}
   validates :city, presence: true, length: {maximum: 30}
   validates :country,presence: true, length: { maximum: 30}
-
-
 
 
 end

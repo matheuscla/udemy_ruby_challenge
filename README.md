@@ -1,4 +1,4 @@
-# Ruby on Rails Challeng
+# Ruby on Rails Challenge
 
 **Requirements**
 
@@ -25,4 +25,8 @@ Things you may want to cover:
  * Clone the project
  * Run bundle install
  * rails db:create && rails db:migrate
+ * rails db:seed
  * rails s
+ 
+# Application
+* http://bookmarkapp-udemy.herokuapp.com
